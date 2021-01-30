@@ -34,7 +34,7 @@ if [[ -n "$2" ]]; then
 				fi
 			exit 1
 		else
-			youtube-dl -f bestaudio -x -o $dir/$dateandtime'.%(ext).s' $url
+			youtube-dl -f bestaudio -x -o $dir/$dateandtime'.%(ext).s' --add-metadata $url
 			echo "Downloaded at $dir/$dateandtime!"
 		fi
 	else
@@ -58,7 +58,7 @@ else
 			fi
 		exit 1
 	else
-		youtube-dl -f bestaudio -x -o $(pwd)/$dateandtime'.%(ext).s' $url
+		youtube-dl -f bestaudio -x -o $(pwd)/$dateandtime'.%(ext).s' --add-metadata $url
 		echo "Downloaded at $(pwd)/$dateandtime"
 	fi
 fi
