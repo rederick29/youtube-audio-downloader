@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dateandtime=$(date '+%d-%m-%Y-%H-%M-%S');
+dateandtime=$(date '+%d-%m-%Y_%H:%M:%S');
 
 if [[ -n "$1" ]]; then
 	url=$1
@@ -32,10 +32,11 @@ if [[ -n "$2" ]]; then
 					sudo chmod a+rx /usr/local/bin/youtube-dl
 					echo "Installation complete! Please run the script again."
 				fi
-			exit 1
+			exit 0
 		else
 			youtube-dl -f bestaudio -x -o $dir/$dateandtime'.%(ext).s' --add-metadata $url
 			echo "Downloaded at $dir/$dateandtime!"
+			exit 0
 		fi
 	else
 		echo "Directory $dir does not exist!"
@@ -56,9 +57,10 @@ else
 				sudo chmod a+rx /usr/local/bin/youtube-dl
 				echo "Installation complete! Please run the script again."
 			fi
-		exit 1
+		exit 0
 	else
 		youtube-dl -f bestaudio -x -o $(pwd)/$dateandtime'.%(ext).s' --add-metadata $url
 		echo "Downloaded at $(pwd)/$dateandtime"
 	fi
 fi
+exit 0
